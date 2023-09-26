@@ -1,0 +1,24 @@
+<div id="layout-wrapper">
+  <app-cpis-header *ngIf="userData.userID > 0 && userData.documentType == 2" [userData]="userData"></app-cpis-header>
+  
+  <app-header *ngIf="userData.userID > 0 && userData.documentType == 1" [userData]="userData"></app-header>
+  <app-login *ngIf="userData?.userID == 0 || isShowLogin"></app-login>
+  <!-- <app-signup></app-signup> -->
+  <router-outlet *ngIf="userData.userID > 0"></router-outlet>
+  <app-footer *ngIf="userData.userID > 0"></app-footer>
+</div>
+
+  <!--start back-to-top-->
+  <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+    <i class="ri-arrow-up-line"></i>
+</button>
+<!--end back-to-top-->
+
+<!--preloader-->
+<div id="preloader">
+    <div id="status">
+        <div class="spinner-border text-primary avatar-sm" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</div>

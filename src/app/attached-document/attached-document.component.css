@@ -1,0 +1,168 @@
+.justify-end {
+    justify-content: end !important;
+}
+
+.wrapper {
+width: 90%;
+max-width: 800px;
+margin: 4em auto;
+text-align: center;
+}
+
+/* Icons */
+.icon {
+display: inline-block;
+width: 16px;
+height: 16px;
+vertical-align: middle;
+fill: currentcolor;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+color: #222;
+font-weight: 700;
+font-family: inherit;
+line-height: 1.333;
+text-rendering: optimizeLegibility;
+}
+
+/**
+* Modals ($modals)
+*/
+
+/* 1. Ensure this sits above everything when visible */
+.modal {
+position: absolute;
+z-index: 10000; /* 1 */
+top: 0;
+left: 0;
+visibility: hidden;
+width: 100%;
+height: 100%;
+transition: all 0.3s;
+}
+
+.modal.is-visible {
+visibility: visible;
+display: block !important;
+}
+
+.modal-overlay {
+position: fixed;
+z-index: 10;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: hsla(0, 0%, 0%, 0.5);
+visibility: hidden;
+opacity: 0;
+transition: visibility 0s linear 0.3s;
+opacity: 0.3s;
+}
+
+.modal.is-visible .modal-overlay {
+opacity: 1;
+visibility: visible;
+transition-delay: 0s;
+}
+
+.modal-wrapper {
+position: absolute;
+z-index: 9999;
+top: 6em;
+left: 50%;
+width: 48em;
+margin-left: -20em;
+background-color: #fff;
+box-shadow: 0 0 1.5em hsla(0, 0%, 0%, 0.35);
+/* top: 50%;*/
+left: 50%;
+transform: translate(-50%, -50%);
+border-radius: 16px;
+}
+
+.modal-transition {
+transition: all 0.3s;
+transform: translateY(-10%);
+opacity: 0;
+}
+
+.modal.is-visible .modal-transition {
+transform: translateY(0);
+opacity: 1;
+}
+
+.modal-header,
+.modal-content {
+padding: 1em;
+}
+
+.modal-content select {
+padding: 10px;
+font-size: 15px;
+border: 1px solid #ebeaea;
+border-radius: 16px;
+}
+
+.modal-header {
+position: relative;
+background-color: #fff;
+box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.06);
+border-bottom: 1px solid #e8e8e8;
+border-radius: 16px !important;
+}
+
+.modal-close {
+position: absolute;
+top: 0;
+right: 0;
+padding: 1em;
+color: #aaa;
+background: none;
+border: 0;
+}
+
+.modal-close:hover {
+color: #777;
+}
+
+.modal-heading {
+font-size: 3.125em;
+margin: 0;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+color: #e92c2c;
+}
+
+.modal-content > *:first-child {
+margin-top: 0;
+}
+
+.modal-content > *:last-child {
+margin-bottom: 0;
+}
+
+.remark-box textarea {
+display: block;
+width: 100%;
+border: 1px solid #ebeaea;
+border-radius: 16px;
+padding: 5px 6px;
+}
+.heder-title {
+display: flex;
+justify-content: start;
+align-items: center;
+}
+
+.heder-title img {
+margin-right: 20px;
+width: 8%;
+}

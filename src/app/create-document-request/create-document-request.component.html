@@ -1,0 +1,53 @@
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="flex-grow-1">
+                <h1 class="mb-4 ml-4 page-title">Entering Request</h1>
+            </div>
+            <div class="row">
+                <div class="col-xxl-8 col-lg-8 align-items-center">
+                    <div class="card card-height-100">
+                        <div class="card-header align-items-center d-flex">
+                            <h4 class="card-title mb-0 flex-grow-1">Select the documents type & deadline</h4>
+                        </div>
+                        <div class="card-body p-0">
+                            <div>
+                                <div class="p-3 d-type">
+                                    <div class="d-flex align-items-center mb-5" *ngFor="let item of deadlineMasterList; index as i">
+                                        <div class="flex-grow-1 ms-3">
+                                            <h6 class="mb-1">
+                                                <input type="checkbox" [value]="item.ID" [(ngModel)]="item.checked" (change)="onDeadlineChange(item)">{{item?.documentType}}</h6>
+                                            <p class="fs-12 mb-0">
+                                                {{item?.deadline}} Working days
+                                            </p>
+                                            <div class="request-deadline-box" *ngIf="item.checked">
+                                                <div class="flex-grow-1 ms-3">
+                                                    <div class="deadline-name">
+                                                    <h6 class="mb-1"><input type="checkbox" id="select" name="select" value="" checked>{{item?.documentType}}</h6>
+                                                </div>
+                                                <div class="deadline-btn mt-3">
+                                                    <button>{{getDeadlineDate(item?.deadline)  | date }} </button>
+                                                </div>
+                                                </div>
+                                                <div class="deadline-remark">
+                                                    <textarea [(ngModel)]="item.remarks">{{item.remarks}}</textarea>
+                                                </div>
+                                              </div>
+                                        </div>
+                                    </div><!-- end -->
+                                </div>
+                            </div>
+                            <div class="button float-end mt-2">
+                              <!-- <a href="add-product.html" title="">  </a> -->
+                              <button class="btn-normal" (click)="countinueToCreateRequest()">Continue</button>
+                            </div>
+                        </div><!-- end cardbody -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+</div>

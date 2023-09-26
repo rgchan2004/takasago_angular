@@ -1,0 +1,89 @@
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row mb-3 pb-1">
+                <div class="col-12">
+                    <div class="d-flex align-items-lg-center flex-lg-row flex-column">
+                        <div class="flex-grow-1">
+                            <h1 class="mb-1 page-title">User list</h1>
+                        </div>
+                      
+                    </div><!-- end card header -->
+                </div>
+                <!--end col-->
+            </div>
+            
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-xxl-12">
+                    <div class="card">
+                        
+
+                        <div class="card-body">
+
+                            <div class="table-responsive table-card dept_owner">
+
+                                <table class="table table-borderless mb-0">
+                                    <thead class="table-light text-muted">
+                                        <tr>
+                                            <th scope="col"><div class="t-border">User Name</div></th>
+                                             <th scope="col"><div class="t-border">Email</div></th>
+                                             <th scope="col" *ngIf="loggedInUser?.department == 3"><div class="t-border">Password</div></th>
+                                            <th scope="col"><div class="t-border">Document Type</div></th>
+                                            <th scope="col"><div class="t-border">Department</div></th>
+                                            <th scope="col"><div class="t-border">Action</div></th>
+                                                                    
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of userMasterList; index as i">
+                                            <td class="">            
+                                               <span class="">{{item?.fullName}}</span> 
+                                            </td>
+                                            <td class="">            
+                                                <span class="">{{item?.emailID}}</span> 
+                                             </td> 
+                                              <td class="" *ngIf="loggedInUser?.department == 3">            
+                                                <span class="">{{item?.password}}</span> 
+                                             </td>
+                                            <td>
+                                                <span class=""> {{item?.documentType == 1 ? "DP" : item?.documentType == 2 ? "FPS" : 'Not Selected'}}</span>
+                                            </td>
+                                            <td>
+                                                <span class=""> {{item?.department == 1 ? "QA" : item?.department == 2 ? "QC" : item?.department == 3 ? "ADMIN" : item?.department == 4 ? "R & D" :  item?.department == 5 ? "SRA" :  item?.department == 6 ? "SS" :  item?.department == 7 ? item?.txtOtherDeptt :  'Not Selected'}}</span>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary mr-2" (click)="editUserDetails(item.userID)">Edit</button>
+                                                <button type="button" class="btn btn-danger" (click)="confirmDelete(item.userID)">Delete</button>
+                                            </td>
+                                        </tr><!-- end tr -->
+                                    </tbody><!-- end tbody -->
+                                </table><!-- end table -->
+                            </div>
+                        </div><!-- end cardbody -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+
+                
+            </div><!-- end row -->
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+    <!-- <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 text-center txt">
+                    <script>document.write(new Date().getFullYear())</script> ©.
+                </div>
+              
+            </div>
+        </div>
+    </footer> -->
+</div>

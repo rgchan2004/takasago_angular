@@ -1,0 +1,141 @@
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+           
+            <div class="flex-grow-1 text-center">
+                <h1 class="mb-4 ml-4 page-title">Create user</h1>
+            </div>
+
+            <div class="row" style="justify-content: center;">
+                <div class="col-xxl-6 col-lg-6 align-items-center">
+                    <div class="card card-height-100">
+                        <div class="card-header align-items-center d-flex">
+                            <h2 class="create-user-title">User creation for both DP and FPS</h2>
+                           
+                        </div>
+                        <div class="card-body p-0 mt-4">
+                            <div class="creat-user-form">
+                                <form [formGroup]="userForm">
+
+                                    <div class="mb-3">
+
+                                        <label for="useremail" class="form-label">User Name: <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control mb-md-0 mb-5"
+                                        placeholder="Full Name" id="fullName" name="fullName" formControlName="fullName" [ngClass]="{'has-error': userForm.get('fullName')?.errors && (userForm.get('fullName')?.touched || userForm.get('fullName')?.dirty)}">
+                                        <div class="text-danger" *ngIf="userForm.get('fullName')?.errors && (userForm.get('fullName')?.touched || userForm.get('fullName')?.dirty)">
+                                            Please Enter User Name.
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">Email <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control mb-md-0 mb-5"
+                                        placeholder="Email ID" id="emailID" name="emailID" formControlName="emailID" [ngClass]="{'has-error': userForm.get('emailID')?.errors && (userForm.get('emailID')?.touched || userForm.get('emailID')?.dirty)}">
+                                        <div class="text-danger" *ngIf="userForm.get('emailID')?.errors && (userForm.get('emailID')?.touched || userForm.get('emailID')?.dirty)">
+                                            Please Enter Email-ID.
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label" for="password-input">Password</label>
+                                        <input type="text" class="form-control mb-md-0 mb-5"
+                                        placeholder="Password" id="password" name="password" formControlName="password" [ngClass]="{'has-error': userForm.get('password')?.errors && (userForm.get('password')?.touched || userForm.get('password')?.dirty)}">
+                                        <div class="text-danger" *ngIf="userForm.get('password')?.errors && (userForm.get('password')?.touched || userForm.get('password')?.dirty)">
+                                            Please Enter Password.
+                                        </div>
+                                    </div>
+                                    <div class="radio mb-3"> 
+                                        <div class="label mb-2">
+                                        <label class="form-label">Portal Type:</label>
+                                        </div>
+                                      <input id="documentDP" type="radio" class="custom-control-input" value="1" name="documentType" formControlName="documentType">
+                                      <label class="custom-control-label" for="documentDP">DP</label>
+                                        <input id="documentCPIS" type="radio" class="custom-control-input" value="2" name="documentType" formControlName="documentType">
+                                        <label class="custom-control-label" for="documentCPIS">FPS</label>
+                                      </div>
+
+                                      <div class="mb-3 user-createSection" *ngIf="userForm.get('documentType')?.value == '2' || userForm.get('documentType')?.value == '1'">
+                               <div class="radio mb-3" *ngIf="userForm.get('documentType')?.value == '1'"> 
+                                <div class="label mb-2">
+                                <label class="form-label">Department:</label>
+                                </div>
+                                <input id="departmentAdmin" type="radio" class="custom-control-input" value="3" name="department" formControlName="department">
+                                        <label class="custom-control-label" for="departmentAdmin">ADMIN</label>
+                                      <input id="departmentQA" type="radio" class="custom-control-input" value="1" name="department" formControlName="department">
+                                      <label class="custom-control-label" for="departmentQA">QA</label>
+                                        <input id="departmentQC" type="radio" class="custom-control-input" value="2" name="department" formControlName="department">
+                                        <label class="custom-control-label" for="departmentQC">QC</label>
+                                        <input id="departmentRD" type="radio" class="custom-control-input" value="4" name="department" formControlName="department">
+                                        <label class="custom-control-label" for="departmentRD">R & D</label>
+                                        <input id="departmentSRA" type="radio" class="custom-control-input" value="5" name="department" formControlName="department">
+                                        <label class="custom-control-label" for="departmentSRA">SRA</label>
+                                        <input id="departmentSS" type="radio" class="custom-control-input" value="6" name="department" formControlName="department">
+                                        <label class="custom-control-label" for="departmentSS">SS</label>
+                                        <input id="departmentOthers" type="radio" class="custom-control-input" value="7" name="department" formControlName="department">
+                                        <label class="custom-control-label" for="departmentOthers">Others</label>
+                                        
+                              </div>
+
+                              <div class="radio mb-3" *ngIf="userForm.get('documentType')?.value == '2'">
+                                <div class="label mb-2">
+                                <label class="form-label">Department:</label>
+                                </div>
+                                <select class="form-control" formControlName="department">
+                                    <option value="3">ADMIN</option>
+                                    <option value="1">QA</option>
+                                    <option value="2">QC</option>
+                                    <option value="4">R & D</option>
+                                    <option value="5">SRA</option>
+                                    <option value="6">SS</option>
+                                    <option value="7">Others</option>
+                                </select>
+                              </div>
+                  
+                              <div class="radio mb-3" *ngIf="userForm.get('department')?.value == '7'">
+                                <div class="label mb-2">
+                                <label class="form-label">Other Department <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control mb-md-0 mb-5"
+                                placeholder="text" id="txtOtherDeptt" name="txtOtherDeptt" formControlName="txtOtherDeptt" [ngClass]="{'has-error': userForm.get('txtOtherDeptt')?.errors && (userForm.get('txtOtherDeptt')?.touched || userForm.get('txtOtherDeptt')?.dirty)}">
+                                <div class="text-danger" *ngIf="userForm.get('txtOtherDeptt')?.errors && (userForm.get('txtOtherDeptt')?.touched || userForm.get('txtOtherDeptt')?.dirty) && userForm.get('department')?.value == '7'">
+                                    Please Enter Department.
+                                </div>
+                                </div>
+                              </div>
+
+                               <div class="radio mb-3" *ngIf="userForm.get('documentType')?.value == '2'"> 
+                                <div class="label mb-2">
+                                <label class="form-label">Project Number:</label>
+                                </div>
+                               
+                                <select class="form-control" formControlName="projectNumber">
+                                    <option value="">--Select--</option>
+                                    <option value="2">Project 1</option>
+                                    <option value="3">Project 2</option>
+                                    <option value="4">Project 3</option>
+                                </select>
+                              </div>
+
+                              <div class="radio mb-3" *ngIf="userForm.get('documentType')?.value == '2'"> 
+                                <input id="priceApproval" type="radio" class="custom-control-input" value="price" name="approvalFor" formControlName="approvalFor">
+                                        <label class="custom-control-label" for="priceApproval">Price Approval</label>
+                                      <input id="quotationApproval" type="radio" class="custom-control-input" value="quotation" name="approvalFor" formControlName="approvalFor">
+                                      <label class="custom-control-label" for="quotationApproval">Quotation Approval</label>
+                              </div>
+                            </div>
+
+                        
+                                </form>
+
+                            </div>
+                            <div class="button float-end mt-2">
+                                <button type="button" class="btn-normal" (click)="submitUserForm()">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

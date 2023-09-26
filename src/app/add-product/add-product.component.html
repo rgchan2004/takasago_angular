@@ -1,0 +1,255 @@
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h1 class="mb-sm-0 page-title">Add Products</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+              <form (ngSubmit)="saveRequest()" #heroForm="ngForm">
+                <div class="col-xxl-12">
+                    <div class="card">
+                        <div class="card-header align-items-center d-flex">
+                            <h4 class="card-title mb-0 flex-grow-1">Product details</h4>
+                            <div class="flex-shrink-0">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                                <div class="d-flex justify-content-center" *ngIf="isShowSpinner">
+                                  <div class="spinner-border" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                  </div>
+                                </div>
+                                <div class="rowTab">
+                                  <div class="labeled">
+                                    <label id="email-label" for="email">Sales Person: </label>
+                                  </div>
+                                  <div class="rightelement">
+                                    <p>{{originatorName}}</p>
+                                  </div>
+                                </div>
+                                <div class="rowTab">
+                                  <div class="labeled mr-5">
+                                    <label id="number-label" for="age">Type of Documents: </label>
+                                  </div>
+                                  <div class="rightelement">
+                                    <div class="table-responsive table-card">
+                                        <table class="table table-hover table-centered align-middle table-nowrap mb-0">
+                                            <thead class=" table-light">
+                                                <tr>
+                                                   
+                                                    <th scope="col"> <div class="t-border">Document Type </div></th>
+                                                    <th scope="col"> <div class="t-border">Deadline</div></th>
+                                                    <th scope="col"> <div class="t-border">Document Name</div></th>
+                                                    <th scope="col"> <div class="t-border">Remarks</div></th>
+                                                </tr>
+                                            </thead>
+                                           
+                                            <tbody>
+                                                <tr *ngFor="let item of addProductObj?.documentAttached; index as i">
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="rounded p-1 me-2">
+                                                                <h6 class="fs-13 mb-1">  <input type="checkbox" disabled="true" [value]="item.ID" [(ngModel)]="item.checked" id="checked" name="checked_{{i}}">{{item?.documentType}} </h6>   
+                                                            </div>
+                                                        </div>                                         
+                                                    </td>
+                                                    <td>
+                                                        <div>
+                                                            <input type="date" disabled="true" [(ngModel)]="item.deadlineDate" id="deadlineDate" name="deadlineDate_{{i}}">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="documentName" [disabled]="isViewMode" [(ngModel)]="item.documentName" name="documentName_{{i}}" #documentName="ngModel">
+                                                    </td>
+                                                    <td>
+                                                        <div>
+                                                            <input type="text" [(ngModel)]="item.remarks" id="remarksc" name="remarksc_{{i}}">
+                                                    </div>
+                                                    </td>                                                                                                                                                                                                                                                                                                                      
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="rowTab">
+                                    <div class="labeled">
+                                      <label for="comments">Remarks</label>
+                                    </div>
+                                    <div class="rightelement">
+                                      <textarea type="text"  [disabled]="isViewMode" class="inputs" style="height:50px;resize:vertical;" id="remarks" [(ngModel)]="addProductObj.remarks" name="remarks" #remarks="ngModel"></textarea>
+                                    </div>
+                                  </div>
+                                  <div class="rowTab" *ngIf="!isViewMode">
+                                    <div class="labeled">
+                                      <label for="comments">Reference Document:</label>
+                                    </div>
+                                    <div class="rightelement">
+                                      <!-- -------------------------------------------- -->
+                                      <div>
+                                        <ng-container>
+                                            <input type="file" id="file" multiple 
+                                                (change)="getFileDetails($event)">
+                                        </ng-container>
+                                    </div>
+                                  </div>
+                                  <div class="rowT">
+                                    <div class="labeled">
+                                      <label for="comments"></label>
+                                    </div>
+                                    <div class="rightelement">
+                                        <h6 class="mt-2 note">Note:If there are more files, then Zip into single file and attach.</h6>
+                                  </div>
+                                </div>
+                                </div>
+                             <!-- ------------------------------------------------------ -->
+                             <div class="rowTab">
+                              <div class="labeled mr-5">
+                                <label id="number-label" for="age">Attached Documents: </label>
+                              </div>
+                              <div class="rightelement">
+                                <div class="table-responsive table-card">
+                                  <span *ngIf="addProductObj?.referenceDocument?.length == 0">No data found</span>
+                             <table class="table table-borderless mb-0" *ngIf="addProductObj?.referenceDocument?.length > 0">
+                                 <thead class="table-light text-muted">
+                                     <tr>
+                                         <th scope="col"><div class="t-border">Document Name</div></th>
+                                         <th scope="col"><div class="t-border">Action </div></th>
+                                                                 
+                                     </tr>
+                                 </thead>
+                                 <tbody>
+                                     <tr *ngFor="let item of addProductObj?.referenceDocument; index as i">
+                                        
+                                         <td>
+                                             <span class=""> {{item.CDR_AttachedDocumentName}}</span>
+                                         </td>
+                                         <td>
+                                             <button type="button" class="btn btn-primary btn-sm" title="download file" (click)="downloadFile(item)"><i class="fa fa-download"></i></button>              
+                                                </td>
+                                     </tr><!-- end tr -->
+                                 </tbody><!-- end tbody -->
+                             </table>
+                                </div>
+                              </div>
+                            </div>
+                                  <div class="product-details">
+                                    <h4>Details</h4>
+                                  </div>
+                        </div>
+
+
+                       
+     <div class="row" style="align-items: center;">
+<div class="col-md-12 dynamic-field" id="dynamic-field-1" *ngFor="let item of addProductObj?.productDetails; index as i">
+<div class="row prod-form pd-40" >
+ <div class="col-md-3"> 
+      <label class="control-label" for="date_start">Perfumer Code </label>
+      <input type="text" class="form-control" [disabled]="isViewMode"
+       id="perfumeCode" [(ngModel)]="item.perfumeCode" name="perfumeCode_{{i}}">
+    </div>
+    <div class="col-md-3">   
+      <label class="control-label" for="date_finish">Corporate Code</label>
+      <input type="text" [disabled]="isViewMode" class="form-control" id="corporateCode" [(ngModel)]="item.corporateCode" name="corporateCode_{{i}}">
+    </div>
+    <div class="col-md-3">   
+        <label class="control-label" for="date_finish">SAP Code</label>
+        <input type="text" [disabled]="isViewMode" class="form-control" id="sixACode" [(ngModel)]="item.sixACode" name="sixACode_{{i}}">
+      </div>
+      <div class="col-md-3">   
+        <label class="control-label" for="date_finish">Project Number (if exist)</label>
+        <input type="text" [disabled]="isViewMode" class="form-control" id="projectNo" [(ngModel)]="item.projectNo" name="projectNo_{{i}}">
+      </div>
+      
+    </div>
+
+    <div class="row prod-form pd-40" >
+ <div class="col-md-3"> 
+      <label class="control-label" for="date_start">Label Name </label>
+      <input type="text" [disabled]="isViewMode" class="form-control" id="labelName" [(ngModel)]="item.labelName" name="labelName_{{i}}">
+    </div>
+    <div class="col-md-3">   
+      <label class="control-label" for="date_finish">Country</label>
+       <select [(ngModel)]="item.countryName" id="countryName" name="countryName_{{i}}" [disabled]="isViewMode">
+        <option value="-1">-Select-</option>
+        <option value="1">Vietnam</option>
+        <option value="2">Australia</option>
+          <option value="3">Myanmar</option>
+            <option value="4">Thailand</option>
+              <option value="5">Indonesia</option>
+                <option value="6">Bangladesh</option>
+                  <option value="7">India</option>
+                    <option value="8">Malaysia</option>
+                      <option value="9">Korea</option>
+                        <option value="10">Philippines</option>
+                          <option value="11">Singapore</option>
+                            <option value="12">China</option>
+                              <option value="13">Pakistan</option>
+                                <option value="14">Japan</option>
+                                  <option value="15">Cambodia</option>
+                                    <option value="16">New Zealand</option>
+                                      <option value="17">United States</option>
+                                        <option value="18">Germany</option>
+                                          <option value="19">Sri Lanka</option>
+                                            <option value="20">Taiwan</option>
+                                              <option value="21">Hong Kong</option>
+                                                <option value="22">France</option>
+</select>
+    </div>
+    <div class="col-md-3">   
+        <label class="control-label" for="date_finish">Customer</label>
+        <input type="text" class="form-control" [disabled]="isViewMode" id="customerName" [(ngModel)]="item.customerName" name="customerName_{{i}}">
+       <!-- <select name="customerName_{{i}}" [disabled]="isViewMode" id="customerName" [(ngModel)]="item.customerName">
+        <option value="-1">-Select-</option>
+        <option value="Coke">Coke</option>
+<option value="Pepsi">Pepsi</option>
+<option value="Nestle">Nestle</option>
+</select> -->
+      </div>
+      <div class="col-md-3">   
+        <label class="control-label" for="date_finish">End Application &nbsp;</label><span style="color: red;font-weight: 500;">* Mandatory for IFRA cert Request</span>
+        <input type="text" class="form-control" [disabled]="isViewMode" id="endApplication" [(ngModel)]="item.endApplication" name="endApplication_{{i}}">
+      </div>
+    </div>
+
+     <div class="row prod-form pd-40" >
+ <div class="col-md-3"> 
+      <label class="control-label" for="date_start">Dosage &nbsp;</label><span style="color: red;font-weight: 500;">* Mandatory for IFRA cert Request</span>
+      <input type="text" class="form-control" [disabled]="isViewMode" id="dosage" [(ngModel)]="item.dosage" name="dosage_{{i}}">
+    </div>
+    <div class="col-md-3">   
+      <label class="control-label" for="date_finish">Lot Number</label>
+      <input type="text" class="form-control" [disabled]="isViewMode" id="lotNumber" [(ngModel)]="item.lotNumber" name="lotNumber_{{i}}">
+    </div>
+    <div class="col-md-6 mt-4" *ngIf="!isViewMode">  
+        <button type="button" (click)="addProductDetails()" class="btn btn-primary mr-2">Add
+        </button>
+        <button type="button" *ngIf="addProductObj?.productDetails?.length > 1" (click)="delete(i)" class="btn btn-danger">Remove
+        </button>
+    </div>
+</div>
+</div>
+</div>
+
+
+   <div class="button float-end mt-2" style="text-align: right" *ngIf="!isViewMode">
+                            <a>
+                              <button type="submit" class="btn btn-success">Submit</button>
+                            </a> 
+                        </div>
+                    </div>
+                </div><!--end col-->
+              </form>
+            </div><!--end row-->
+        </div>
+    </div>
+</div>
+

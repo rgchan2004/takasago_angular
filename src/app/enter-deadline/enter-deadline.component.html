@@ -1,0 +1,151 @@
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row mb-3 pb-1">
+                <div class="col-12">
+                    <div class="d-flex align-items-lg-center flex-lg-row flex-column">
+                        <div class="flex-grow-1">
+                            <h1 class="mb-1 page-title text-center"> {{isViewMode ? 'Update' : 'Create'}} deadline</h1>
+                        </div>
+                      
+                    </div><!-- end card header -->
+                </div>
+                <!--end col-->
+            </div>
+            
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-xxl-12">
+                    <div class="card deadline-form">
+                        <div class="card-header align-items-center d-flex">
+                            <h4 class="card-title mb-0 flex-grow-1">Deadline Form</h4>
+                            <div class="flex-shrink-0">
+                            </div>
+                        </div><!-- end card header -->
+
+                        <div class="card-body">
+
+                            <form class="form-inline"  [formGroup]="deadlineForm">
+                            
+
+                            <div class="prod-form">
+                                <!-- <label class="col-sm-3 control-label">Сроки</label> -->
+                                <div class="form-group"> 
+                                  <label class="control-label" for="date_start">Document Type</label>
+                                  <input type="text" class="form-control"
+                                  placeholder="Document Type" id="documentType" [readonly]="isViewMode" name="documentType" formControlName="documentType" [ngClass]="{'has-error': deadlineForm.get('documentType')?.errors && (deadlineForm.get('documentType')?.touched || deadlineForm.get('documentType')?.dirty)}">
+                                  <div class="text-danger" *ngIf="deadlineForm.get('documentType')?.errors && (deadlineForm.get('documentType')?.touched || deadlineForm.get('documentType')?.dirty)">
+                                      Please Enter Document Type.
+                                  </div>
+                                  <!-- <input type="text" class="form-control" name="date_start" id="date_start"> -->
+                                </div>
+                                <div class="form-group">   
+                                  <label class="control-label" for="date_finish">Dept Owner </label>
+                                  <select class="form-control" id="depptOwner" [disabled]="isViewMode" name="depptOwner" formControlName="depptOwner" [ngClass]="{'has-error': deadlineForm.get('depptOwner')?.errors && (deadlineForm.get('depptOwner')?.touched || deadlineForm.get('depptOwner')?.dirty)}">
+                                    <option value="">-Select-</option>
+                                    <option value="1">QA</option>
+                                    <option value="2">QC</option>
+                                    <option value="4">R & D</option>
+                                    <option value="5">SRA</option>
+                                    <option value="6">SS</option>
+                              </select>
+
+                                  <!-- <input type="text" class="form-control"
+                                  placeholder="Dept Owner" id="depptOwner" [readonly]="isViewMode" name="depptOwner" formControlName="depptOwner" [ngClass]="{'has-error': deadlineForm.get('depptOwner')?.errors && (deadlineForm.get('depptOwner')?.touched || deadlineForm.get('depptOwner')?.dirty)}">
+                                   -->
+                                  <div class="text-danger" *ngIf="deadlineForm.get('depptOwner')?.errors && (deadlineForm.get('depptOwner')?.touched || deadlineForm.get('depptOwner')?.dirty)">
+                                      Please Enter Department Owner.
+                                  </div>
+                                  <!-- <input type="text" class="form-control" name="date_finish" id="date_finish" placeholder=""> -->
+                                </div>
+
+                                <div class="form-group">   
+                                    <label class="control-label" for="date_finish">Assign To Deptt </label>
+                                    <select class="form-control" id="assignToDeptt" [disabled]="isViewMode" name="assignToDeptt" formControlName="assignToDeptt" [ngClass]="{'has-error': deadlineForm.get('assignToDeptt')?.errors && (deadlineForm.get('assignToDeptt')?.touched || deadlineForm.get('assignToDeptt')?.dirty)}">
+                                      <option value="">-Select-</option>
+                                      <option value="1">QA</option>
+                                      <option value="2">QC</option>
+                                      <option value="4">R & D</option>
+                                      <option value="5">SRA</option>
+                                      <option value="6">SS</option>
+                                </select>
+  
+                                    <!-- <input type="text" class="form-control"
+                                    placeholder="Dept Owner" id="depptOwner" [readonly]="isViewMode" name="depptOwner" formControlName="depptOwner" [ngClass]="{'has-error': deadlineForm.get('depptOwner')?.errors && (deadlineForm.get('depptOwner')?.touched || deadlineForm.get('depptOwner')?.dirty)}">
+                                     -->
+                                    <div class="text-danger" *ngIf="deadlineForm.get('assignToDeptt')?.errors && (deadlineForm.get('assignToDeptt')?.touched || deadlineForm.get('assignToDeptt')?.dirty)">
+                                        Please Enter Assign To Department.
+                                    </div>
+                                    <!-- <input type="text" class="form-control" name="date_finish" id="date_finish" placeholder=""> -->
+                                  </div>
+
+                                  <div class="form-group">   
+                                    <label class="control-label" for="date_finish">Deadline working day</label>
+                                    <input type="text" class="form-control"
+                                    placeholder="Deadline" id="deadline" name="deadline" formControlName="deadline" [ngClass]="{'has-error': deadlineForm.get('deadline')?.errors && (deadlineForm.get('deadline')?.touched || deadlineForm.get('deadline')?.dirty)}">
+                                    <div class="text-danger" *ngIf="deadlineForm.get('deadline')?.errors && (deadlineForm.get('deadline')?.touched || deadlineForm.get('deadline')?.dirty)">
+                                        Please Enter Deadline.
+                                    </div>
+                                    <!-- <input type="text" class="form-control" name="date_finish" id="date_finish" placeholder=""> -->
+                                  </div>
+
+                               
+                              </div>
+
+                                 
+                            </form>
+                               <div class="btn aer-bnt mt-3">
+                                <button type="button" class="btn-normal" (click)="submitDeadlineForm()">Submit</button>
+                                  
+                            </div>
+
+
+                              <!-- <div class="deadline-box">
+                                <div class="flex-grow-1 ms-3">
+                                    <div class="deadline-name">
+                                    <h6 class="mb-1"><input type="checkbox" id="select" name="select" value="">HACCP Plan</h6>
+                                    <p class="fs-12 mb-0">
+                                      2 Working days
+                                    </p>
+                                </div>
+                                <div class="deadline-btn mt3">
+                                    <button>deadline</button>
+                                </div>
+                                </div>
+                                <div class="deadline-remark">
+                                    <textarea name="comment" form="usrform">Remarks</textarea>
+                                </div>
+                              </div> -->
+
+                             
+
+                              <div class="button float-end mt-2">
+                                
+                            </div>
+                        </div><!-- end cardbody -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+
+                
+            </div><!-- end row -->
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 text-center txt">
+                    <script>document.write(new Date().getFullYear())</script> ©.
+                </div>
+              
+            </div>
+        </div>
+    </footer>
+</div>

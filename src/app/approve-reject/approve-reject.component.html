@@ -1,0 +1,208 @@
+
+
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row mb-3 pb-1">
+                <div class="col-12">
+                    <div class="d-flex align-items-lg-center flex-lg-row flex-column">
+                        <div class="flex-grow-1">
+                            <h1 class="mb-1 page-title">Document Request List</h1>
+                        </div>
+                      
+                    </div><!-- end card header -->
+                </div>
+                <!--end col-->
+            </div>
+            
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-xxl-12">
+                    <div class="card">
+                        
+
+                        <div class="card-body">
+
+                            <div class="table-responsive table-card dept_owner">
+                                <table class="table table-borderless mb-0">
+                                    <thead class="table-light text-muted">
+                                        <tr>
+                                          <th scope="col"><div class="t-border">S. No.</div></th>
+                                          <th scope="col"><div class="t-border">Ref No.</div></th>
+                                          <th scope="col"><div class="t-border">Type Of Document</div></th>
+                                          <th scope="col"><div class="t-border">Sales Person</div></th>
+                                          <th scope="col"><div class="t-border">Deptt Owner</div></th>
+                                          <th scope="col"><div class="t-border">Assigned To Deptt</div></th>
+                                          <th scope="col"><div class="t-border">Project No.</div></th>
+                                          <th scope="col"><div class="t-border">Customer Name </div></th>
+                                          <th scope="col"><div class="t-border">Country </div></th>
+                                          <th scope="col"><div class="t-border">Label Name </div></th>
+                                          <th scope="col"><div class="t-border">Perfumer Code </div></th>
+                                          <th scope="col"><div class="t-border">Status </div></th>
+                                          <th scope="col"><div class="t-border">Created Date </div></th>
+                                          <th scope="col"><div class="t-border">Target Date </div></th>
+                                          <th scope="col"><div class="t-border">Completed Date </div></th>
+                                          <th scope="col" width="14%"><div class="t-border">Action</div></th>
+                                                                    
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       
+                                      <tr *ngFor="let item of documentRequestList | paginate: { itemsPerPage: 10, currentPage: page }; index as i">
+                                        <td>           
+                                          {{i+1}}
+                                        </td>
+                                       <td>     
+                                         <a  (click)="viewRequest(item.CDRID_RefNo)"> <span class="t-blue">{{item.CDRID_RefNo}}</span> </a>
+                                       </td>
+                                       <!-- <td *ngIf="!item.isShowLink">     
+                                          <span>{{item.CDRID_RefNo}}</span>
+                                         </td> -->
+                                       <td>           
+                                           {{item.TypeOfDocument}}
+                                         </td>
+                                         <td>           
+                                           {{item?.SalesPerson}}
+                                         </td>
+                                         <td>{{item.DocOwner == '1' ? 'QA' : item.DocOwner == '2' ? 'QC' : item.DocOwner == '4' ?  'R & D' : item.DocOwner == '5' ? 'SRA' : item.DocOwner == '6' ? 'SS' : '--'}}
+                                           
+                                         </td>
+                                         <td>{{item.AssignedToDeptt == '1' ? 'QA' : item.AssignedToDeptt == '2' ? 'QC' : item.AssignedToDeptt == '4' ?  'R & D' : item.AssignedToDeptt == '5' ? 'SRA' : item.AssignedToDeptt == '6' ? 'SS' : '--'}}
+                                           
+                                         </td>
+                                      
+                                       <td>
+                                           <span class="">{{viewProjectNumber(item.CDRID_RefNo)}}</span>
+                                       </td>
+                                       <td>
+                                          <span class=""> {{viewCustomerName(item.CDRID_RefNo)}}</span>
+                                       </td>
+                                       <td>
+                                          <span class=""> {{viewCountryName(item.CDRID_RefNo)}}</span>
+                                       </td>
+                                       <td>
+                                          <span class=""> {{viewLabelName(item.CDRID_RefNo)}}</span>
+                                       </td>
+                                       <td>
+                                          <span class=""> {{viewPerfumerCode(item.CDRID_RefNo)}}</span>
+                                       </td>
+                                        <td>
+                                           <span class=""> {{item.Status == 1 ? "Approved" : item.Status == 2 ? "Completed" : item.Status == 3 ? "Rejected" : item.Status == 0 ? "Pending" : "Pending"}}</span>
+                                        </td>
+                                        <td>
+                                           <span class=""> {{item.createdDate | date}}</span>
+                                        </td>
+                                        <td>
+                                           <span class=""> {{item.targetDate | date}}</span>
+                                        </td>
+                                        <td>
+                                           <span class=""> {{item.dtModified | date}}</span>
+                                        </td>
+                                        <td *ngIf="item.Status != 2 && item.Status != 3">
+                                          <button type="button" class="btn btn-primary" (click)="submitRejectRequest(item,'Approve')">Approve</button>
+                                          &nbsp;<button type="button" class="btn btn-danger" (click)="submitRejectRequest(item,'Reject')" data-bs-toggle="modal" data-bs-target="#exampleModal">Reject</button>
+                                             </td>
+                                    </tr>
+                                       
+                                    </tbody><!-- end tbody -->
+                                </table><!-- end table -->
+                            </div>
+                        </div><!-- end cardbody -->
+                    </div><!-- end card -->
+                    <div style="float: right;"><pagination-controls (pageChange)="page = $event"></pagination-controls></div>
+                </div><!-- end col -->
+
+                
+            </div><!-- end row -->
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 text-center txt">
+                    <script>document.write(new Date().getFullYear())</script> ©.
+                </div>
+              
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button> -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Rejected</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Rejection Reason:</label>
+                <select class="form-control" [(ngModel)]="rejectionReason" id="rejectionReason" name="rejectionReason">
+                    <option value="">-Select-</option>
+                    <option value="1">Insufficient Information</option>
+                    <option value="2">Reason 2</option>
+                    <option value="3">Reason 3</option>
+              </select>
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Remark:</label>
+                <textarea class="form-control" id="rejectionRemark" [(ngModel)]="rejectionRemark" name="rejectionRemark"></textarea>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="rejectSubmit()"  data-bs-dismiss="modal">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Rejected</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Rejection Reason:</label>
+                <select class="form-control" [(ngModel)]="rejectionReason" id="rejectionReason" name="rejectionReason">
+                    <option value="">-Select-</option>
+                    <option value="1">Reason 1</option>
+                    <option value="2">Reason 2</option>
+                    <option value="3">Reason 3</option>
+              </select>
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Remark:</label>
+                <textarea class="form-control" id="rejectionRemark" [(ngModel)]="rejectionRemark" name="rejectionRemark"></textarea>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="submitRejectRequest()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="d-flex justify-content-center" *ngIf="isShowSpinner">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
