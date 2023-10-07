@@ -39,6 +39,7 @@ import { PriceSimulationComponent } from './CPIS/price-simulation/price-simulati
 import { AttachDocumentComponent } from './attach-document/attach-document.component';
 import { Old1DocumentListComponent } from './old1-document-list/old1-document-list.component';
 import { Old2DocumentListComponent } from './old2-document-list/old2-document-list.component';
+import { DownloadReportComponent } from './download-report/download-report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,7 +72,8 @@ import { Old2DocumentListComponent } from './old2-document-list/old2-document-li
     PriceSimulationComponent,
     AttachDocumentComponent,
     Old1DocumentListComponent,
-    Old2DocumentListComponent
+    Old2DocumentListComponent,
+    DownloadReportComponent
   ],
   imports: [
     BrowserModule,

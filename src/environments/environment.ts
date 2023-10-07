@@ -6,10 +6,10 @@
 
 export const environment = {
   production: false,
-  //baseUrl: 'http://localhost:52071',
+  baseUrl: 'http://localhost:52071',
   //baseUrl: 'http://55.255.103.96:7221',
   //baseUrl: 'http://54.255.103.96:52071',
-  baseUrl: 'http://tis-frapp:7222',
+  //baseUrl: 'http://tis-frapp:7222',
   //baseUrl: 'http://54.255.103.96:52071',
   // baseUrl: 'http://cpisapi-env.eba-musjargb.eu-north-1.elasticbeanstalk.com',
 };

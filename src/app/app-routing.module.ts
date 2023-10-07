@@ -25,11 +25,13 @@ import { CreateInvoiceComponent } from './CPIS/create-invoice/create-invoice.com
 import { RevalidatePricingComponent } from './CPIS/revalidate-pricing/revalidate-pricing.component';
 import { PriceSimulationComponent } from './CPIS/price-simulation/price-simulation.component';
 import { AttachDocumentComponent } from './attach-document/attach-document.component';
+import { DownloadReportComponent } from './download-report/download-report.component';
 
 const routes: Routes = [
   { path: 'create-user/:id', component: CreateUserComponent },
   { path: 'user-list', component:  UserListComponent},
   { path: 'qa-document-list', component:  QADocumentListComponent},
+  { path: 'download-report', component:  DownloadReportComponent},
   { path: 'old1-document-list', component:  Old1DocumentListComponent},
   { path: 'old2-document-list', component:  Old2DocumentListComponent},
   { path: 'create-document-request', component:  CreateDocumentRequestComponent},
