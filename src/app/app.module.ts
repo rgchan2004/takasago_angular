@@ -40,6 +40,13 @@ import { AttachDocumentComponent } from './attach-document/attach-document.compo
 import { Old1DocumentListComponent } from './old1-document-list/old1-document-list.component';
 import { Old2DocumentListComponent } from './old2-document-list/old2-document-list.component';
 import { DownloadReportComponent } from './download-report/download-report.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatNativeDateModule} from '@angular/material/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +89,12 @@ import { DownloadReportComponent } from './download-report/download-report.compo
     ReactiveFormsModule,
     HttpClientModule,
     NgxPaginationModule,
-    NgChartsModule
+    NgChartsModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatNativeDateModule
   ],
   providers:[DatePipe],
   bootstrap: [AppComponent]

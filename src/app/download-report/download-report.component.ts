@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./download-report.component.css']
 })
 export class DownloadReportComponent {
-
+  generateReport(dateString: string): void {
+  }
 }

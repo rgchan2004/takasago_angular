@@ -4,7 +4,19 @@
             <div class="flex-grow-1">
                 <h1 class="mb-4 ml-4 page-title">Download Report</h1>
             </div>
-            <div class="row">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <mat-form-field>
+                        <mat-label>Choose a date</mat-label>
+                        <input #dateStringInput matInput [matDatepicker]="picker">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-auto">
+                  <button (click)="generateReport(dateStringInput.value)" type="button" class="btn btn-primary">Generate Report</button>
+                </div>
             </div><!-- end row -->
         </div>
         <!-- container-fluid -->
