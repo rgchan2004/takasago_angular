@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
 })
 export class DownloadReportComponent {
   generateReport(dateString: string): void {
+    window.alert(dateString)
+    let dateStringParts: string[] = dateString.split("/")
+    let year: string = dateStringParts[2]
+    let month: string = dateStringParts[0]
   }
 }
