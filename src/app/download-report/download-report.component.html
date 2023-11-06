@@ -17,6 +17,9 @@
                 <div class="col-auto">
                   <button (click)="generateReport(dateStringInput.value)" type="button" class="btn btn-primary">Generate Report</button>
                 </div>
+                <div *ngIf="generatingReport" class='col-auto' style="margin-left: 20px;">
+                  <mat-spinner style='border-top-color:blue' diameter="50"></mat-spinner>
+                </div>
             </div><!-- end row -->
         </div>
         <!-- container-fluid -->

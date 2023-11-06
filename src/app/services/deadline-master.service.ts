@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { DeadlineMaster, DeadlineMasterLoadResponse, DeadlineMasterResponse, DocumentTypeMaster, DocumentTypeMasterLoadResponse, DocumentTypeMasterResponse } from '../models/deadline-master';
 import { SimpleResponse } from '../models/simple-response';
 import { UtilityService } from './utility.service';
+import { catchError } from 'rxjs/operators';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,13 @@ export class DeadlineMasterService {
   private baseUrl: string;
   constructor(private httpClient: HttpClient, private utilityService: UtilityService) { 
     this.baseUrl = environment.baseUrl;
+  }
+
+  async downloadReport(startDate: string): Promise<Blob | void> {
+    startDate = encodeURIComponent(startDate)
+    return await firstValueFrom(this.httpClient.get<Blob>(`${this.baseUrl}/DownloadReport?startDate=${startDate}`, {
+      responseType: 'blob' as 'json'
+    })).catch(err => { this.utilityService.handleError(err) })
   }
 
   async getDocumentTypeMasterList(): Promise<DocumentTypeMasterResponse | void> {

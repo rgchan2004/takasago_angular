@@ -47,6 +47,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatMomentDateModule } from '@angular/material-moment-adapter'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 
 const MY_DATE_FORMATS = {
   parse: {
@@ -107,7 +108,8 @@ const MY_DATE_FORMATS = {
     MatDatepickerModule,
     MatInputModule,
     MatFormFieldModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    MatProgressSpinnerModule
   ],
   providers:[
     DatePipe,
