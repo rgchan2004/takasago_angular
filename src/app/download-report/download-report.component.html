@@ -6,16 +6,19 @@
             </div>
             <div class="row align-items-center">
                 <div class="col-auto">
-                    <mat-form-field>
-                        <mat-label>Choose a date</mat-label>
-                        <input #dateStringInput matInput [matDatepicker]="picker">
-                        <mat-hint>DD/MM/YYYY</mat-hint>
-                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Enter a date range</mat-label>
+                    <mat-date-range-input [rangePicker]="picker">
+                      <input #startDate matStartDate placeholder="Start date">
+                      <input #endDate matEndDate placeholder="End date">
+                    </mat-date-range-input>
+                    <mat-hint>DD/MM/YYYY - DD/MM/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                  </mat-form-field>
                 </div>
                 <div class="col-auto">
-                  <button (click)="generateReport(dateStringInput.value)" type="button" class="btn btn-primary">Generate Report</button>
+                  <button (click)="generateReport(startDate.value, endDate.value)" type="button" class="btn btn-primary">Generate Report</button>
                 </div>
                 <div *ngIf="generatingReport" class='col-auto' style="margin-left: 20px;">
                   <mat-spinner style='border-top-color:blue' diameter="50"></mat-spinner>

@@ -16,9 +16,10 @@ export class DeadlineMasterService {
     this.baseUrl = environment.baseUrl;
   }
 
-  async downloadReport(startDate: string): Promise<Blob | void> {
+  async downloadReport(startDate: string, endDate: string): Promise<Blob | void> {
     startDate = encodeURIComponent(startDate)
-    return await firstValueFrom(this.httpClient.get<Blob>(`${this.baseUrl}/DownloadReport?startDate=${startDate}`, {
+    endDate = encodeURIComponent(endDate)
+    return await firstValueFrom(this.httpClient.get<Blob>(`${this.baseUrl}/DownloadReport?startDate=${startDate}&endDate=${endDate}`, {
       responseType: 'blob' as 'json'
     })).catch(err => { this.utilityService.handleError(err) })
   }

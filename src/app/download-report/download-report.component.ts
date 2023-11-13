@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DeadlineMasterService } from '../services/deadline-master.service';
 import Swal from 'sweetalert2';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-download-report',
@@ -10,8 +11,8 @@ import Swal from 'sweetalert2';
 export class DownloadReportComponent {
   generatingReport: boolean = false
   constructor(private _deadlineService: DeadlineMasterService) {}
-  async generateReport(dateString: string): Promise<void> {
-    if (dateString === '') {
+  async generateReport(startDate: string, endDate: string): Promise<void> {
+    if (startDate === '' || endDate === '') {
       Swal.fire({
         icon: 'error',
         title: 'Error',
@@ -21,7 +22,7 @@ export class DownloadReportComponent {
       return
     }
     this.generatingReport = true
-    let data: Blob = (await this._deadlineService.downloadReport(dateString)) as Blob
+    let data: Blob = (await this._deadlineService.downloadReport(startDate, endDate)) as Blob
     let downloadURL = window.URL.createObjectURL(data);
     let link = document.createElement('a');
     link.href = downloadURL;
